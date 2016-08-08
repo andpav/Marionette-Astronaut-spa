@@ -1,0 +1,40 @@
+li {
+    list-style: none;
+}
+
+#addButton{
+
+}
+
+.popup{
+/*
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    display: none;
+    z-index: 200;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 16px;
+*/
+}
+
+.row{
+
+}
+.row:hover{
+background: lightgray;
+}
+
+.active {
+    opacity: 1;
+    background: red;
+
+}
+
+.non-active {
+    opacity: 0;
+}
