@@ -2,39 +2,86 @@ li {
     list-style: none;
 }
 
-#addButton{
-
+li:hover {
+    background: #F6F5F4;
 }
 
-.popup{
-/*
-    width: 400px;
-    height: 400px;
-    margin: 50px auto;
-    display: none;
-    z-index: 200;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    padding: 16px;
-*/
+#destroy {
+    cursor: pointer
 }
 
-.row{
-
+.popup {
+    /*
+        border: 10px;
+        width: 30%;
+        margin: 50px auto;
+        display: inline;
+        z-index: 200;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 16px;
+    */
 }
-.row:hover{
-background: lightgray;
+
+#newButton:hover {
+    color: #F56433;
+    cursor: pointer;
 }
 
-.active {
-    opacity: 1;
-    background: red;
-
+body {
+    background: #E1E3E0;
 }
 
-.non-active {
-    opacity: 0;
+h2 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    color: #8D8173;
+}
+
+h3 {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    color: #8D8173;
+}
+
+p {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    color: #8D8173;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+tr {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 5px;
+}
+
+th {
+    font-size: 22px;
+    font-weight: 300;
+    padding: 12px 10px;
+    border-bottom: 2px solid #F56433;
+    color: #F56433;
+    width: 20%;
+}
+
+tbody tr:nth-child(2) {
+    border-bottom: 2px solid #F56433;
+}
+
+td {
+    align = "center"
+    padding: 10px;
+    color: #8D8173;
+    width: 20%;
 }
