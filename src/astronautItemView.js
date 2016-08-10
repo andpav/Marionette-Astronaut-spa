@@ -1,16 +1,11 @@
 import 'backbone';
 import  'backbone.marionette';
-
-class AstronautItemView extends Marionette.ItemView {
-
-    constructor() {
-        super();
-        this.template = "#table-item";
-        this.tagName = "li";
-        this.triggers = {
-            'click #destroy': 'done'
-        };
+import AstronautItem from './astronautItem';
+export default  Marionette.ItemView.extend({
+    model:AstronautItem,
+    template:  "#table-item",
+    tagName: "tr",
+    triggers: {
+        'click #remove': 'remove'
     }
-}
-
-export default AstronautItemView
+});

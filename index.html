@@ -7,63 +7,42 @@
 </head>
 <body>
 
-
-<table>
-
-    <tr>
-        <th colspan="5"></th>
-    </tr>
-    <tr>
-        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name</th>
-        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date</th>
-        <th>&nbsp;&nbsp;&nbsp;Days</th>
-        <th>Mission</th>
-        <th>Is multiple?</th>
-    </tr>
-</table>
-
-
 <script type="text/template" id="table-item">
-
-    <tr>
         <td><%= name %></td>
         <td><%= date %></td>
         <td><%= days %></td>
         <td><%= mission %></td>
         <td><%= isMultiple %></td>
-        <td>&nbsp <label id="destroy">x</label></td>
-    </tr>
-
-
+        <td> <label id="remove">x</label></td>
 </script>
 
 
 <script type="text/template" id="table-list">
-
-    <ul>
-    </ul>
-    <!--<p><label>German astronauts: < tableLength ></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label id="newButton">
-        Add new ... </label></p>-->
-
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Days</th>
+            <th>Mission</th>
+            <th>Is multiple?</th>
+        </tr>
+    </table>
 
     <div class="popup">
-
-        <h3>Add a new astronaut</h3>
-
-        <p>Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="nameInput"/></p>
-
-        <p>Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="dateInput"/></p>
-
-        <p>Days: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="daysInput"/></p>
-
-        <p>Mission: &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="missionInput"/></p>
-
-        <p>Is multiple: <input type="text" id="isMultipleInput"/></p>
-
+        <a id="new_button">Add a new astronaut</a>
+        <div class="modal_content">
+            <input type="text" id="nameInput"  placeholder="Name"/>
+            <input type="text" id="dateInput" placeholder="Date"/>
+            <input type="text" id="daysInput" placeholder="Days"/>
+            <input type="text" id="missionInput" placeholder="Mission"/>
+            <input type="text" id="isMultipleInput" placeholder="Is multiple"/>
+            <button id="add_button">Add</button>
+        </div>
     </div>
 </script>
 
 <div id="main">
+
 </div>
 
 

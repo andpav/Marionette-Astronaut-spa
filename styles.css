@@ -1,54 +1,56 @@
+body,
 li {
     list-style: none;
 }
 
-li:hover {
-    background: #F6F5F4;
+input{
+    border: 1px solid #8D8173;
+    width: 18%;
+    color: #8D8173;
+    font-size: 14px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    padding: 5px;
 }
 
-#destroy {
-    cursor: pointer
-}
-
-.popup {
-    /*
-        border: 10px;
-        width: 30%;
-        margin: 50px auto;
-        display: inline;
-        z-index: 200;
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: 16px;
-    */
-}
-
-#newButton:hover {
-    color: #F56433;
+#remove:hover {
     cursor: pointer;
+    color: red;
+}
+
+.modal_content {
+    border: 10px;
+    display: none;
+}
+
+.hidden_content{
+    display: block;
+}
+
+#add_button{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 16px;
+}
+
+#add_button:hover {
+    cursor: pointer;
+}
+
+#new_button:hover {
+    cursor: pointer;
+    color: red;
 }
 
 body {
     background: #E1E3E0;
 }
 
-h2 {
+
+#new_button {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
     color: #8D8173;
+    font-size: 16px;
 }
 
-h3 {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    color: #8D8173;
-}
-
-p {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    color: #8D8173;
-}
 
 table {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
@@ -59,12 +61,7 @@ table {
     width: 100%;
 }
 
-tr {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    text-align: center;
-    border-collapse: collapse;
-    border-spacing: 5px;
-}
+
 
 th {
     font-size: 22px;
@@ -75,12 +72,8 @@ th {
     width: 20%;
 }
 
-tbody tr:nth-child(2) {
-    border-bottom: 2px solid #F56433;
-}
-
 td {
-    align = "center"
+    align : "center";
     padding: 10px;
     color: #8D8173;
     width: 20%;

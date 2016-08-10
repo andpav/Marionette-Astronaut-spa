@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "http-server",
+    "start": "webpack-dev-server --watch",
     "build": "webpack"
   },
   "dependencies": {
@@ -21,6 +21,7 @@
     "exports-loader": "^0.6.2",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
+    "json-loader": "^0.5.4",
     "style-loader": "^0.12.3",
     "underscore-template-loader": "*",
     "url-loader": "^0.5.6",

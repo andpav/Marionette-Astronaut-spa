@@ -18735,12 +18735,33 @@
 
 	var _astronautCompositeView2 = _interopRequireDefault(_astronautCompositeView);
 
+	var _astronautItem = __webpack_require__(9);
+
+	var _astronautItem2 = _interopRequireDefault(_astronautItem);
+
+	var _astronautCollection = __webpack_require__(10);
+
+	var _astronautCollection2 = _interopRequireDefault(_astronautCollection);
+
+	var _input = __webpack_require__(12);
+
+	var _input2 = _interopRequireDefault(_input);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = Marionette.LayoutView.extend({
 	    el: 'body',
 	    initialize: function initialize() {
-	        this.mainRegion.show(new _astronautCompositeView2.default());
+
+	        _input2.default.forEach(function (entry) {
+
+	            var date = new Date(parseInt(entry.date) * 1000);
+	            entry.date = date.toLocaleDateString();
+	        });
+
+	        var astronautList = new _astronautCollection2.default(_input2.default);
+
+	        this.mainRegion.show(new _astronautCompositeView2.default({ collection: astronautList }));
 	    },
 	    regions: {
 	        mainRegion: "#main"
@@ -18756,8 +18777,6 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	__webpack_require__(1);
 
@@ -18777,139 +18796,56 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	exports.default = Marionette.CompositeView.extend({
+	    collection: _astronautCollection2.default,
+	    childView: _astronautItemView2.default,
+	    childViewContainer: 'tbody',
+	    template: "#table-list",
+	    ui: {
+	        modalContent: ".modal_content",
+	        nameInput: '#nameInput',
+	        dateInput: '#dateInput',
+	        daysInput: '#daysInput',
+	        missionInput: '#missionInput',
+	        isMultipleInput: '#isMultipleInput',
+	        add_button: '#add_button'
+	    },
+	    events: {
+	        "click #add_button": 'add',
+	        "click #new_button": 'toggle'
+	    },
+	    childEvents: {
+	        'remove': 'remove'
+	    },
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AstronautCompositeView = function (_Marionette$Composite) {
-	    _inherits(AstronautCompositeView, _Marionette$Composite);
-
-	    function AstronautCompositeView() {
-	        _classCallCheck(this, AstronautCompositeView);
-
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AstronautCompositeView).call(this));
-
-	        _this.childView = _astronautItemView2.default;
-	        _this.childViewContainer = 'ul';
-	        _this.template = "#table-list";
-	        _this.ui = {
-	            nameInput: '#nameInput',
-	            dateInput: '#dateInput',
-	            daysInput: '#daysInput',
-	            missionInput: '#missionInput',
-	            isMultipleInput: '#isMultipleInput'
+	    templateHelper: function templateHelper() {
+	        return {
+	            tableLength: this.collection.length
 	        };
-	        _this.events = {
-	            "click #addButton": 'add'
-	        };
-	        _this.childEvents = {
-	            'done': 'remove'
-	        };
-	        return _this;
+	    },
+	    toggle: function toggle() {
+
+	        ui.modalContent.toggleClass("modal_content");
+	    },
+
+
+	    add: function add() {
+	        this.collection.add({
+	            name: this.ui.nameInput.val(),
+	            date: this.ui.dateInput.val(),
+	            days: this.ui.daysInput.val(),
+	            mission: this.ui.missionInput.val(),
+	            isMultiple: this.ui.isMultipleInput.val()
+
+	        });
+	        this.render();
+	    },
+
+	    remove: function remove(child) {
+	        this.collection.remove(child.model);
+	        this.render();
 	    }
-
-	    _createClass(AstronautCompositeView, [{
-	        key: 'templateHelper',
-	        value: function templateHelper() {
-	            return {
-	                tableLength: this.collection.length
-	            };
-	        }
-	    }, {
-	        key: 'initialize',
-	        value: function initialize() {
-	            var astronautList = new _astronautCollection2.default([{
-	                "name": "Sigmund Jähn",
-	                "date": 272926800,
-	                "days": 7,
-	                "mission": "Sojus 31 / Sojus 29",
-	                "isMultiple": false
-	            }, { "name": "Ulf Merbold", "date": 438814800, "days": 10, "mission": "STS-9", "isMultiple": true }, {
-	                "name": "Reinhard Furrer",
-	                "date": 499467600,
-	                "days": 7,
-	                "mission": "STS-61-A (D1)",
-	                "isMultiple": false
-	            }, {
-	                "name": "Ernst Messerschmid",
-	                "date": 499467600,
-	                "days": 7,
-	                "mission": "STS-61-A (D1)",
-	                "isMultiple": false
-	            }, {
-	                "name": "Klaus-Dietrich Flade",
-	                "date": 700779600,
-	                "days": 7,
-	                "mission": "Sojus TM-14 / Sojus TM-13",
-	                "isMultiple": false
-	            }, {
-	                "name": "Hans Schlegel",
-	                "date": 735768000,
-	                "days": 9,
-	                "mission": "STS-55 (D2)",
-	                "isMultiple": true
-	            }, {
-	                "name": "Ulrich Walter",
-	                "date": 735768000,
-	                "days": 9,
-	                "mission": "STS-55 (D2)",
-	                "isMultiple": false
-	            }, {
-	                "name": "Thomas Reiter",
-	                "date": 810072000,
-	                "days": 179,
-	                "mission": "Sojus TM-22 / Euromir 95",
-	                "isMultiple": true
-	            }, {
-	                "name": "Reinhold Ewald",
-	                "date": 855522000,
-	                "days": 19,
-	                "mission": "Sojus TM-25 / Sojus TM-24",
-	                "isMultiple": false
-	            }, { "name": "Gerhard Thiele", "date": 950216400, "days": 11, "mission": "STS-99", "isMultiple": false }, {
-	                "name": "Alexander Gerst",
-	                "date": 1401224400,
-	                "days": 165,
-	                "mission": "Sojus TMA-13M / ISS-Expedition 40 /ISS-Expedition 41",
-	                "isMultiple": false
-	            }]);
-
-	            astronautList.forEach(function (entry) {
-
-	                var date = new Date(parseInt(entry.date) * 1000);
-	                entry.date = date.toLocaleDateString();
-	            });
-
-	            this.collection = astronautList;
-	        }
-	    }, {
-	        key: 'add',
-	        value: function add() {
-
-	            this.collection.add({
-	                name: this.ui.nameInput.val(),
-	                date: this.ui.dateInput.val(),
-	                days: this.ui.daysInput.val(),
-	                mission: this.ui.missionInput.val(),
-	                isMultiple: this.ui.isMultipleInput.val()
-
-	            });
-	            this.render();
-	        }
-	    }, {
-	        key: 'remove',
-	        value: function remove(child) {
-	            this.collection.remove(child.model);
-	            this.render();
-	        }
-	    }]);
-
-	    return AstronautCompositeView;
-	}(Marionette.CompositeView);
-
-	exports.default = AstronautCompositeView;
+	});
 
 /***/ },
 /* 9 */
@@ -18923,34 +18859,15 @@
 
 	__webpack_require__(1);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AstronautItem = function (_Backbone$Model) {
-	    _inherits(AstronautItem, _Backbone$Model);
-
-	    function AstronautItem() {
-	        _classCallCheck(this, AstronautItem);
-
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AstronautItem).call(this));
-
-	        _this.defaults = {
-	            name: '',
-	            date: '',
-	            days: '',
-	            mission: '',
-	            isMultiple: ''
-	        };
-	        return _this;
+	exports.default = Backbone.Model.extend({
+	    defaults: {
+	        name: '',
+	        date: '',
+	        days: '',
+	        mission: '',
+	        isMultiple: ''
 	    }
-
-	    return AstronautItem;
-	}(Backbone.Model);
-
-	exports.default = AstronautItem;
+	});
 
 /***/ },
 /* 10 */
@@ -18959,7 +18876,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	__webpack_require__(1);
@@ -18970,28 +18887,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var AstronautCollection = function (_Backbone$Collection) {
-	    _inherits(AstronautCollection, _Backbone$Collection);
-
-	    function AstronautCollection() {
-	        _classCallCheck(this, AstronautCollection);
-
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AstronautCollection).call(this));
-
-	        _this.model = new _astronautItem2.default();
-	        return _this;
-	    }
-
-	    return AstronautCollection;
-	}(Backbone.Collection);
-
-	exports.default = AstronautCollection;
+	exports.default = Backbone.Collection.extend({
+	  model: _astronautItem2.default
+	});
 
 /***/ },
 /* 11 */
@@ -19007,32 +18905,104 @@
 
 	__webpack_require__(4);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var _astronautItem = __webpack_require__(9);
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var _astronautItem2 = _interopRequireDefault(_astronautItem);
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var AstronautItemView = function (_Marionette$ItemView) {
-	    _inherits(AstronautItemView, _Marionette$ItemView);
-
-	    function AstronautItemView() {
-	        _classCallCheck(this, AstronautItemView);
-
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AstronautItemView).call(this));
-
-	        _this.template = "#table-item";
-	        _this.tagName = "li";
-	        _this.triggers = {
-	            'click #destroy': 'done'
-	        };
-	        return _this;
+	exports.default = Marionette.ItemView.extend({
+	    model: _astronautItem2.default,
+	    template: "#table-item",
+	    tagName: "tr",
+	    triggers: {
+	        'click #remove': 'remove'
 	    }
+	});
 
-	    return AstronautItemView;
-	}(Marionette.ItemView);
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
 
-	exports.default = AstronautItemView;
+	module.exports = [
+		{
+			"name": "Sigmund Jähn",
+			"date": 272926800,
+			"days": 7,
+			"mission": "Sojus 31 / Sojus 29",
+			"isMultiple": false
+		},
+		{
+			"name": "Ulf Merbold",
+			"date": 438814800,
+			"days": 10,
+			"mission": "STS-9",
+			"isMultiple": true
+		},
+		{
+			"name": "Reinhard Furrer",
+			"date": 499467600,
+			"days": 7,
+			"mission": "STS-61-A (D1)",
+			"isMultiple": false
+		},
+		{
+			"name": "Ernst Messerschmid",
+			"date": 499467600,
+			"days": 7,
+			"mission": "STS-61-A (D1)",
+			"isMultiple": false
+		},
+		{
+			"name": "Klaus-Dietrich Flade",
+			"date": 700779600,
+			"days": 7,
+			"mission": "Sojus TM-14 / Sojus TM-13",
+			"isMultiple": false
+		},
+		{
+			"name": "Hans Schlegel",
+			"date": 735768000,
+			"days": 9,
+			"mission": "STS-55 (D2)",
+			"isMultiple": true
+		},
+		{
+			"name": "Ulrich Walter",
+			"date": 735768000,
+			"days": 9,
+			"mission": "STS-55 (D2)",
+			"isMultiple": false
+		},
+		{
+			"name": "Thomas Reiter",
+			"date": 810072000,
+			"days": 179,
+			"mission": "Sojus TM-22 / Euromir 95",
+			"isMultiple": true
+		},
+		{
+			"name": "Reinhold Ewald",
+			"date": 855522000,
+			"days": 19,
+			"mission": "Sojus TM-25 / Sojus TM-24",
+			"isMultiple": false
+		},
+		{
+			"name": "Gerhard Thiele",
+			"date": 950216400,
+			"days": 11,
+			"mission": "STS-99",
+			"isMultiple": false
+		},
+		{
+			"name": "Alexander Gerst",
+			"date": 1401224400,
+			"days": 165,
+			"mission": "Sojus TMA-13M / ISS-Expedition 40 /ISS-Expedition 41",
+			"isMultiple": false
+		}
+	];
 
 /***/ }
 /******/ ]);
